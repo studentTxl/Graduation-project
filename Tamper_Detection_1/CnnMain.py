@@ -26,12 +26,12 @@ def run_training():
     ##1.数据的处理
     """
     # 训练图片路径
-    train_dir = '/home/zhang-rong/Yes/testCnn/train/'
+    train_dir = 'C:/Graduation-project/Tamper_Detection_1/train/'
     # 输出log的位置
-    logs_train_dir = '/home/zhang-rong/Yes/testCnn/log/'
+    logs_train_dir = 'C:/Graduation-project/Tamper_Detection_1/log/'
  
     # 模型输出
-    train_model_dir = '/home/zhang-rong/Yes/testCnn/model/'
+    train_model_dir = 'C:/Graduation-project/Tamper_Detection_1/model/'
  
     # 获取数据中的训练图片 和 训练标签
     train, train_label = input_data.get_files(train_dir)
@@ -158,11 +158,11 @@ def evaluate_one_image():
     # test, test_label = input_data.get_files(test_dir)
     # image_array = get_one_image(test)      #调用get_one_image随机选取一幅图片并显示
  
-    image_array=get_one_image_file("/home/zhang-rong/Yes/testCnn/68.jpg")
+    image_array=get_one_image_file("C:/Graduation-project/Tamper_Detection_1/test/Tp_S_CNN_S_N_txt00039_txt00039_11326.jpg")
  
     with tf.Graph().as_default():
         BATCH_SIZE = 1   # 获取一张图片
-        N_CLASSES = 2  #二分类
+        N_CLASSES = 2  	#二分类
  
         image = tf.cast(image_array, tf.float32)
         image = tf.image.per_image_standardization(image)
@@ -175,7 +175,7 @@ def evaluate_one_image():
  
         # 
         # 训练模型路径
-        logs_train_dir = '/home/zhang-rong/Yes/testCnn/model/'
+        logs_train_dir = 'C:/Graduation-project/Tamper_Detection_1/model'
  
         saver = tf.train.Saver()
  
@@ -207,7 +207,7 @@ def evaluate_one_image():
 主函数
 """
 def main():
-    # run_training()
+    #run_training()
     evaluate_one_image()
  
  

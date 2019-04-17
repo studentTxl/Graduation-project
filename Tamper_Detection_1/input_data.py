@@ -21,9 +21,9 @@ def get_files(file_dir):
  
     #os.listdir为列出路径内的所有文件
     for file in os.listdir(file_dir):
-        name = file.split('.')   #将每一个文件名都进行分割，以.分割
+        name = file.split('_')   #将每一个文件名都进行分割，以.分割
         #这样文件名 就变成了三部分 name的形式 [‘dog’，‘9981’，‘jpg’]
-        if name[0]=='cat':
+        if name[0]=='Au':
             cats.append(file_dir+"/"+file)   #在定义的cats列表内添加图片路径，由文件夹的路径+文件名组成
             lable_cats.append(0) #在猫的标签列表中添加对应图片的标签，猫的标签为0，狗为1
         else:
