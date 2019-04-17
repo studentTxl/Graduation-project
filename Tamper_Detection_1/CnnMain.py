@@ -154,7 +154,7 @@ def get_one_image_file(img_dir):
 def evaluate_one_image():
  
     # 数据集路径
-    # test_dir = '/home/zhang-rong/Yes/testCnn/train/'
+    # test_dir = 'C:/Graduation-project/Tamper_Detection_1/train'
     # test, test_label = input_data.get_files(test_dir)
     # image_array = get_one_image(test)      #调用get_one_image随机选取一幅图片并显示
  
@@ -198,9 +198,9 @@ def evaluate_one_image():
             # 得到概率最大的索引
             max_index = np.argmax(prediction)
             if max_index==0:
-                print('This is a cat with possibility %.6f' %prediction[:, 0])
+                print('This is Original picture with possibility %.6f' %prediction[:, 0])
             else:
-                print('This is a dog with possibility %.6f' %prediction[:, 1])
+                print('This is a Modified picture with possibility %.6f' %prediction[:, 1])
                 
  
 """

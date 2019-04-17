@@ -5,33 +5,33 @@ import os
  
  
 """
-训练图片  路径    猫是没有进行复制粘贴篡改的图片，狗是进行过复制粘贴篡改的照片，先进行模型的训练之后进行内容的修改
+训练图片  路径   先进行模型的训练之后进行内容的修改
 """
-train_dir="/c/Graduation-project/Tamper_Detection_1/train"
+train_dir="C:/Graduation-project/Tamper_Detection_1/train"
  
  
 """
  获取数据，并处理 数据 
 """
 def get_files(file_dir):
-    cats=[] #未进行篡改图片 列表
-    lable_cats=[] #未进行篡改图片的标签 列表
-    dogs=[] #的图片 列表
-    lable_dogs=[]  #狗的标签 列表
+    ori_Picture=[] #未进行篡改图片 列表
+    lable_ori=[] #未进行篡改图片的标签 列表
+    mod_Picture=[] #有复制粘贴篡改的图片 列表
+    lable_mod=[]  #有复制粘贴篡改的图片的标签 列表
  
     #os.listdir为列出路径内的所有文件
     for file in os.listdir(file_dir):
         name = file.split('_')   #将每一个文件名都进行分割，以.分割
-        #这样文件名 就变成了三部分 name的形式 [‘dog’，‘9981’，‘jpg’]
+        #这样文件名 就变成了几部分 name的形式 [根据部分的信息判断图片是否篡改类型，进行分类标签用于训练]
         if name[0]=='Au':
-            cats.append(file_dir+"/"+file)   #在定义的cats列表内添加图片路径，由文件夹的路径+文件名组成
-            lable_cats.append(0) #在猫的标签列表中添加对应图片的标签，猫的标签为0，狗为1
+            ori_Picture.append(file_dir+"/"+file)   #在定义的ori_Picture列表内添加图片路径，由文件夹的路径+文件名组成
+            lable_ori.append(0) #在未篡改图片的标签列表中添加对应图片的标签，未篡改的标签为0，有修改为1
         else:
-            dogs.append(file_dir+"/"+file)
-            lable_dogs.append(1)
-    print(" %d cat, %d dog"%(len(cats),len(dogs)))
-    image_list = np.hstack((cats, dogs))  #将猫和狗的列表合并为一个列表
-    label_list = np.hstack((lable_cats, lable_dogs)) #将猫和狗的标签列表合并为一个列表
+            mod_Picture.append(file_dir+"/"+file)
+            lable_mod.append(1)
+    print(" %d original picture, %d modified picture"%(len(ori_Picture),len(mod_Picture)))
+    image_list = np.hstack((ori_Picture, mod_Picture))  #将两种图片类型的列表合并为一个列表
+    label_list = np.hstack((lable_ori, lable_mod)) #将两种类型图片的标签列表合并为一个列表
  
     #将两个列表构成一个数组
     temp=np.array([image_list,label_list])
